@@ -11,7 +11,7 @@ public class ArrayTasks {
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
     public String[] seasonsArray() {
-
+        return new String[]{"winter", "spring", "summer", "autumn"};
     }
 
     /**
@@ -25,7 +25,11 @@ public class ArrayTasks {
      * length = 5  -> [1, 2, 3, 4, 5]
      */
     public int[] generateNumbers(int length) {
-
+        int[] arr = new int[length];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
+        }
+        return arr;
     }
 
     /**
@@ -37,7 +41,11 @@ public class ArrayTasks {
      * arr = [5, -3, -4] -> sum = -2
      */
     public int totalSum(int[] arr) {
-
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
     }
 
     /**
@@ -50,7 +58,11 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == number)
+                return i;
+        }
+        return -1;
     }
 
     /**
@@ -63,7 +75,11 @@ public class ArrayTasks {
      * arr = ["pineapple", "apple", "pen"] -> ["pen", "apple", "pineapple"]
      */
     public String[] reverseArray(String[] arr) {
-
+        String[] reverse = new String[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            reverse[i] = arr[arr.length - i - 1];
+        }
+        return reverse;
     }
 
     /**
@@ -78,7 +94,18 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-
+        int len = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0)
+                len++;
+        }
+        int[] pos = new int[len];
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] > 0) {
+                pos[--len] = arr[i];
+            }
+        }
+        return pos;
     }
 
     /**
@@ -93,5 +120,8 @@ public class ArrayTasks {
      */
     public int[][] sortRaggedArray(int[][] arr) {
 
+        return null;
     }
+
+
 }
