@@ -119,9 +119,97 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-
-        return null;
+        for (int i = 0; i < arr.length; i++) {
+            mergeSort(arr[i]);
+        }
+        mergeSort(arr);
+        return arr;
     }
 
+
+
+    private int[] mergeSort(int[] arr) {
+        int n = arr.length;
+        if (n < 2) {
+            return arr;
+        }
+        int mid = n / 2;
+        int[] left = new int[mid];
+        int[] right = new int[n - mid];
+        for (int i = 0; i < mid; i++) {
+            left[i] = arr[i];
+        }
+        for (int i = mid; i < n; i++) {
+            right[i - mid] = arr[i];
+        }
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, left, right, mid, n - mid);
+        return arr;
+    }
+
+    private void merge(int[] arr, int[] left, int[] right, int leftBound, int rightBound) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int arrIndex = 0;
+        while (leftIndex < leftBound && rightIndex < rightBound) {
+            if (left[leftIndex] > right[rightIndex]) {
+                arr[arrIndex++] = left[leftIndex++];
+            } else {
+                arr[arrIndex++] = right[rightIndex++];
+            }
+        }
+        while (leftIndex < leftBound) {
+            arr[arrIndex++] = left[leftIndex++];
+        }
+
+        while (rightIndex < rightBound) {
+            arr[arrIndex++] = right[rightIndex++];
+        }
+    }
+
+    private int[][] mergeSort(int[][] arr) {
+        int n = arr.length;
+        if (n < 2) {
+            return arr;
+        }
+        int mid = n / 2;
+        int[][] left = new int[mid][1];
+        int[][] right = new int[n - mid][1];
+        for (int i = 0; i < mid; i++) {
+            left[i] = arr[i];
+        }
+        for (int i = mid; i < n; i++) {
+            right[i - mid] = arr[i];
+        }
+
+        mergeSort(left);
+        mergeSort(right);
+
+        merge(arr, right, left, n-mid, mid);
+        return arr;
+    }
+
+    private void merge(int[][] arr, int[][] left, int[][] right, int leftBound, int rightBound) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int arrIndex = 0;
+        while (leftIndex < leftBound && rightIndex < rightBound) {
+            if (left[leftIndex].length < right[rightIndex].length) {
+                arr[arrIndex++] = left[leftIndex++];
+            } else {
+                arr[arrIndex++] = right[rightIndex++];
+            }
+        }
+        while (leftIndex < leftBound) {
+            arr[arrIndex++] = left[leftIndex++];
+        }
+
+        while (rightIndex < rightBound) {
+            arr[arrIndex++] = right[rightIndex++];
+        }
+    }
 
 }
